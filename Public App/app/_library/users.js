@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 export const loginUser = async (e, username, password, setError, setLoginSuccess) => {
   e.preventDefault();
   try {
-    const login = await axios.post('http://localhost:8000/users/login', {
+    // const login = await axios.post('http://localhost:8000/users/login', {
+    const login = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
       username: username,
       password: password
     });
@@ -23,7 +24,8 @@ export const loginUser = async (e, username, password, setError, setLoginSuccess
 export const createUser = async (e, firstName, lastName, username, password, confirmPassword, setError, setRegisterSuccess) => {
   e.preventDefault();
   try {
-    const register = await axios.post('http://localhost:8000/users/register', {
+    // const register = await axios.post('http://localhost:8000/users/register', {
+    const register = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, {
       firstName: firstName,
       lastName: lastName,
       username: username,
@@ -33,7 +35,8 @@ export const createUser = async (e, firstName, lastName, username, password, con
     // console.log(register);
     if (register.status === 200 || register.status === 201) {
       setRegisterSuccess(true);
-      const login = await axios.post('http://localhost:8000/users/login', {
+      // const login = await axios.post('http://localhost:8000/users/login', {
+      const login = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
         username: username,
         password: password
       });
@@ -62,7 +65,8 @@ export const authenticate = async () => {
       return false;
     }
 
-    const response = await axios.get('http://localhost:8000/users/authenticate', {
+    // const response = await axios.get('http://localhost:8000/users/authenticate', {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/authenticate`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -79,7 +83,8 @@ export const authenticate = async () => {
 export const getUser = async (userId) => {
   try {
     const token = localStorage.getItem('token');
-    const user = await axios.get(`http://localhost:8000/users/${userId}/posts`, {
+    // const user = await axios.get(`http://localhost:8000/users/${userId}/posts`, {
+    const user = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/${userId}/posts`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

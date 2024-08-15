@@ -4,7 +4,8 @@ export async function sendComment(e, comment, userId, postId, setUpdateComments,
   e.preventDefault();
   try {
     const token = localStorage.getItem('token');
-    const newComment = await axios.post('http://localhost:8000/comments', {
+    // const newComment = await axios.post('http://localhost:8000/comments', {
+    const newComment = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/comments`, {
       comment: comment,
       userId: userId,
       postId: postId,
@@ -30,7 +31,8 @@ export async function deleteComment(e, commentId, setUpdateComments, setError) {
   if (confirmDel) {
     try {
       const token = localStorage.getItem('token');
-      const deletedComment = await axios.delete(`http://localhost:8000/comments/${commentId}`, {
+      // const deletedComment = await axios.delete(`http://localhost:8000/comments/${commentId}`, {
+      const deletedComment = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/comments/${commentId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

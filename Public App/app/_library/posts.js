@@ -2,7 +2,8 @@ import axios from "axios";
 
 export const getPosts = async () => {
   try {
-    const posts = await axios.get('http://localhost:8000/posts');
+    // const posts = await axios.get('http://localhost:8000/posts');
+    const posts = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
     // console.log(posts.data);
     return posts.data;
   } catch (error) {
@@ -12,7 +13,8 @@ export const getPosts = async () => {
 
 export const getPost = async (postId) => {
   try {
-    const post = await axios.get(`http://localhost:8000/posts/${postId}`);
+    // const post = await axios.get(`http://localhost:8000/posts/${postId}`);
+    const post = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`);
     return post.data;
   } catch (error) {
     console.error(error.response?.data.error);
@@ -22,7 +24,8 @@ export const getPost = async (postId) => {
 
 export async function getComments(postId) {
   try {
-    const comments = await axios.get(`http://localhost:8000/posts/${postId}/comments`);
+    // const comments = await axios.get(`http://localhost:8000/posts/${postId}/comments`);
+    const comments = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/comments`);
     // console.log(comments.data);
     return comments.data;
   } catch (error) {
@@ -34,7 +37,8 @@ export async function updatePost(e, postId, updatedTitle, updatedContent, setUpd
   e.preventDefault();
   try {
     const token = localStorage.getItem('token');
-    const updatedPost = await axios.put(`http://localhost:8000/posts/${postId}`, {
+    // const updatedPost = await axios.put(`http://localhost:8000/posts/${postId}`, {
+    const updatedPost = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`, {
       title: updatedTitle,
       content: updatedContent,
       published: true
@@ -58,7 +62,8 @@ export async function createPost(e, title, content, setCreated, setError) {
   try {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
-    const newPost = await axios.post(`http://localhost:8000/posts`, {
+    // const newPost = await axios.post(`http://localhost:8000/posts`, {
+    const newPost = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
       title: title,
       content: content,
       published: true,
@@ -84,7 +89,8 @@ export async function deletePost(e, postId, setUpdatePosts, setError) {
   if (confirmDel) {
     try {
       const token = localStorage.getItem('token');
-      const deletedPost = await axios.delete(`http://localhost:8000/posts/${postId}`, {
+      // const deletedPost = await axios.delete(`http://localhost:8000/posts/${postId}`, {
+      const deletedPost = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
