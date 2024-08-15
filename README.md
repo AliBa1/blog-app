@@ -1,8 +1,8 @@
 # Blog App
 
 ## Tech Stack
-- NodeJS
-- NextJS
+- ExpressJS/Node
+- NextJS/React
 - PostgreSQL
 
 ## Tools Used
