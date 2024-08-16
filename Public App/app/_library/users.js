@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 export const loginUser = async (e, username, password, setError, setLoginSuccess) => {
   e.preventDefault();
