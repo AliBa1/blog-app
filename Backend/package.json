@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "postinstall": "npx prisma migrate deploy"
+    "migrate": "prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
