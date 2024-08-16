@@ -9,12 +9,12 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const data = await getPosts();
-      // console.log("Data: ", data);
-      setPosts(data);
-    }
-    fetchPosts();
+    // const fetchPosts = async () => {
+    //   const data = await getPosts();
+    //   // console.log("Data: ", data);
+    //   setPosts(data);
+    // }
+    // fetchPosts();
   }, [])
 
   if (!posts) {
