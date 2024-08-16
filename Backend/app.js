@@ -9,11 +9,6 @@ const cors = require("cors");
 // const prisma = require("./prisma");
 const routes = require("./routes/index");
 
-// NEON TEST
-const postgres = require('postgres');
-require('dotenv').config();
-// NEON TEST
-
 const app = express();
 
 app.use(cors({ origin: "*" }));
@@ -58,32 +53,6 @@ app.use(
 //     done(err);
 //   }
 // });
-
-
-
-// NEON TEST
-let { HOST, DBNAME, USER, DBPASS, ENDPOINT_ID } = process.env;
-
-const sql = postgres({
-  host: HOST,
-  database: DBNAME,
-  username: USER,
-  password: DBPASS,
-  port: 5432,
-  ssl: 'require',
-  connection: {
-    options: `project=${ENDPOINT_ID}`,
-  },
-});
-
-async function getPgVersion() {
-  // const result = await sql`select version()`;
-  const result = await sql;
-  console.log(result);
-}
-
-getPgVersion();
-// NEON TEST
 
 app.use("/users", routes.users);
 app.use("/posts", routes.posts);
