@@ -12,6 +12,7 @@ export default function Home() {
     const fetchPosts = async () => {
       console.log("before the fetch.");
       const data = await getPosts();
+      console.log("after the fetch.");
       // console.log("Data: ", data);
       setPosts(data);
     }

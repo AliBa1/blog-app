@@ -2,8 +2,10 @@ import axios from "axios";
 
 export const getPosts = async () => {
   try {
+    console.log("In fetch p1");
     // const posts = await axios.get('http://localhost:8000/posts');
     const posts = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
+    console.log("In fetch p2");
     // console.log(posts.data);
     return posts.data;
   } catch (error) {
