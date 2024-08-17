@@ -120,8 +120,6 @@ router.get(
 router.get("/", async (req, res) => {
   try {
     // const posts = await prisma.post.findMany();
-    console.log("1 works");
-
     const posts = await prisma.post.findMany({
       include: {
         author: {
@@ -139,11 +137,7 @@ router.get("/", async (req, res) => {
       },
     });
 
-    console.log("2 works");
-
     res.json(posts);
-
-    console.log("3 works");
   } catch (error) {
     console.error("Error getting posts: ", error.message);
     return res.status(500).json({ error: "Internal Server Error" });
