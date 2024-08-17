@@ -14,7 +14,7 @@ export async function sendComment(e, comment, userId, postId, setUpdateComments,
         Authorization: `Bearer ${token}`
       }
     });
-    // console.log(newComment);
+    
     if (newComment.status === 201 || newComment.status === 200) {
       setNewComment('');
       setUpdateComments(true);
