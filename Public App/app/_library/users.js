@@ -32,8 +32,9 @@ export const createUser = async (e, firstName, lastName, username, password, con
       password: password,
       confirmPassword: confirmPassword
     });
+    console.log(process.env.NEXT_PUBLIC_API_URL);
+    console.log(register.data);
     console.log("Debug 2");
-    // console.log(register);
     if (register.status === 200 || register.status === 201) {
       setRegisterSuccess(true);
       // const login = await axios.post('http://localhost:8000/users/login', {
