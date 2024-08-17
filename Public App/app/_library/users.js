@@ -23,7 +23,6 @@ export const loginUser = async (e, username, password, setError, setLoginSuccess
 export const createUser = async (e, firstName, lastName, username, password, confirmPassword, setError, setRegisterSuccess) => {
   e.preventDefault();
   try {
-    console.log("Debug 1");
     // const register = await axios.post('http://localhost:8000/users/register', {
     const register = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, {
       firstName: firstName,
@@ -32,9 +31,6 @@ export const createUser = async (e, firstName, lastName, username, password, con
       password: password,
       confirmPassword: confirmPassword
     });
-    console.log(process.env.NEXT_PUBLIC_API_URL);
-    console.log(register.data);
-    console.log("Debug 2");
     if (register.status === 200 || register.status === 201) {
       setRegisterSuccess(true);
       // const login = await axios.post('http://localhost:8000/users/login', {
@@ -42,10 +38,8 @@ export const createUser = async (e, firstName, lastName, username, password, con
         username: username,
         password: password
       });
-      console.log("Debug 3");
       localStorage.setItem("token", register.data.token);
       localStorage.setItem("userId", register.data.userId);
-      console.log("Debug 4");
     }
   } catch (error) {
     console.error(error.response?.data.error || error.response?.data.errors[0].msg);
