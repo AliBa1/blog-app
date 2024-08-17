@@ -10,6 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      console.log("before the fetch.");
       const data = await getPosts();
       // console.log("Data: ", data);
       setPosts(data);
